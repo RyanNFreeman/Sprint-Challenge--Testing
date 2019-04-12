@@ -1,4 +1,4 @@
-const server = require('/server.js')
+const server = require('./server')
 const request = require('supertest')
 
 describe('POST /games', ()=>{
@@ -28,7 +28,7 @@ describe('POST /games', ()=>{
      it('Should return status 201 when you make a post to POST /games and required data provided', async () =>{
       const  game ={
 
-                 title: 'Pacman', // required
+                title: 'Pacman', // required
                 genre: 'Arcade', // required
                 releaseYear: 1980 // not required
 

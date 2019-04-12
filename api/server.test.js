@@ -14,7 +14,7 @@ describe('POST /games', ()=>{
     });
 
      it('Should make a post to POST /games when required data provided', async () =>{
-       game ={
+       const game ={
                 title: 'Pacman', // required
                 genre: 'Arcade', // required
                 releaseYear: 1980 // not required
@@ -31,7 +31,6 @@ describe('POST /games', ()=>{
                 title: 'Pacman', // required
                 genre: 'Arcade', // required
                 releaseYear: 1980 // not required
-
            }
        const response = await request(server)
        .post('/games')

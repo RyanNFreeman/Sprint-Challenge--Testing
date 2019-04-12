@@ -2,6 +2,45 @@ const server = require('/server.js')
 const request = require('supertest')
 
 describe('POST /games', ()=>{
+    it('Should return status 422 when making a post to POST /games  and required data is not provided', async () =>{
+        const game ={
+            title: 'Pacman',
+            releaseYear: 1980 
+          }
+        const response = await request(server)
+       .post('/games')
+       .send(game);
+       expect(response.status).toEqual(422);
+    });
+
+     it('Should make a post to POST /games when required data provided', async () =>{
+       game ={
+                title: 'Pacman', // required
+                genre: 'Arcade', // required
+                releaseYear: 1980 // not required
+          }
+       const response = await request(server)
+       .post('/games')
+       .send(game);
+       expect(response.body.games[0]).toEqual(game);
+    });
+
+     it('Should return status 201 when you make a post to POST /games and required  data provided', async () =>{
+      const  game ={
+
+                 title: 'Pacman', // required
+                genre: 'Arcade', // required
+                releaseYear: 1980 // not required
+
+           }
+       const response = await request(server)
+       .post('/games')
+       .send(game);
+       expect(response.status).toEqual(201)
+    });
+
+ })
+
 /*
 The POST /games endpoint should take in an object that looks like this
 
@@ -15,9 +54,8 @@ The POST /games endpoint should take in an object that looks like this
  Write tests to verify that the endpoint returns the correct HTTP status code 
  when receiving correct and incorrect game data.
 
-
 */
-})
+
 
 describe("GET /games", () => { 
 /*  
